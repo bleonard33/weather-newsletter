@@ -1,1 +1,13 @@
-{{ api_key }}
+<form action="/postsignup/" method="post">{% csrf_token %}
+    {{  form.non_field_errors }}
+    <div class="fieldWrapper">
+        {{ form.email_address.errors }}
+        <label for="id_email_address">Email Address</label>
+        {{ form.email_address }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.location.errors }}
+        <label for="id_location">Location</label>
+        {{ form.location }}
+    </div>
+</form>

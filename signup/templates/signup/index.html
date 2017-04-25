@@ -1,4 +1,7 @@
 <h2>Weather Powered Email</h2>
+{% if message %}
+    <div>{{ message }}</div>
+{% endif %}
 <form action="/signup/" method="post">{% csrf_token %}
     {{  form.non_field_errors }}
     <div class="fieldWrapper">

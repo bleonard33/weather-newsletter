@@ -1,11 +1,5 @@
-create table cities (
-    id integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-    city varchar(48) NOT NULL,
-    state varchar(2) NOT NULL
-);
-
 -- Top 100 US Cities according to Wikipedia
-insert into cities (city, state)
+insert into signup_cities (city, state)
     values
     ('New York', 'NY'),
     ('Los Angeles', 'CA'),

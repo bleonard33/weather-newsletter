@@ -9,20 +9,11 @@ from django.http import HttpResponse
 
 def index(request):
 
-    cities = [c.city + ', ' + c.state
-                for c in Cities.objects.order_by('city')]
+    if request.method == 'POST':
+        print request
 
     context = {
-                    'cities': cities,
-                }
+                'form': SignupForm
+              }
 
     return render(request, 'signup/index.html', context)
-
-
-class SignupFormPage(FormView):
-    template_name = 'signup/index.html'
-    success_url = '/awesome/'
-    form_class = SignupForm
-
-    def form_valid(self, form):
-            return HttpResponse("Sweeeeeet.")

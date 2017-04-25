@@ -1,4 +1,5 @@
-<form action="/postsignup/" method="post">{% csrf_token %}
+<h2>Weather Powered Email</h2>
+<form action="/signup/" method="post">{% csrf_token %}
     {{  form.non_field_errors }}
     <div class="fieldWrapper">
         {{ form.email_address.errors }}
@@ -10,4 +11,5 @@
         <label for="id_location">Location</label>
         {{ form.location }}
     </div>
+    <input type="submit" value="Submit" />
 </form>

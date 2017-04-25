@@ -88,7 +88,7 @@ insert into signup_cities (city, state)
     ('Gilbert', 'AZ'),
     ('Norfolk', 'VA'),
     ('Reno', 'NV'),
-    ('Winston–Salem', 'NC'),
+    ('Winston-Salem', 'NC'),
     ('Glendale', 'AZ'),
     ('Hialeah', 'FL'),
     ('Garland', 'TX'),

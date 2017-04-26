@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'signup.apps.SignupConfig',
+    'weather',
     'bootstrap3',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -77,9 +78,13 @@ WSGI_APPLICATION = 'weather.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+                    'ENGINE': 'django.db.backends.postgresql',
+                    'NAME': 'brendan',
+                    'USER': 'brendan',
+                    'PASSWORD': '',
+                    'HOST': 'localhost',
+                    'PORT': '5432',
+                }
 }
 
 

@@ -2,6 +2,6 @@ Update requirements.txt
 unsub?
 security
 wunderground attribution
-config
-cron email send
+cron email send @ 12pm
 admin things
+10 requests/min wunderground throttling

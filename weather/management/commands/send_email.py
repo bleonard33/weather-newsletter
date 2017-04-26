@@ -6,20 +6,22 @@ import os
 
 class Command(BaseCommand):
 
+    # Base wunderground URL
     WUNDERGROUND_URL = ('http://api.wunderground.com/api/{key}/'
                         '{api}/q/{state}/{city}.json')
 
+    # Get API key from system variable
     WUNDERGROUND_KEY = os.environ['WUNDERGROUND_KEY']
-
-    # API_ENDPOINTS = ['conditions', 'almanac']
 
     def handle(self, *args, **options):
 
         for loc in Account.objects.distinct('location'):
 
+            # Retrieve city/state from location FK object
             city = loc.location.city
             state = loc.location.state
 
+            # Build wunderground URL for city
             url = self.WUNDERGROUND_URL.format(
                 key=self.WUNDERGROUND_KEY,
                 state=state,

@@ -1,18 +1,28 @@
-<h2>Weather Powered Email</h2>
-{% if message %}
-    <div>{{ message }}</div>
-{% endif %}
-<form action="/signup/" method="post">{% csrf_token %}
-    {{  form.non_field_errors }}
-    <div class="fieldWrapper">
-        {{ form.email_address.errors }}
-        <label for="id_email_address">Email Address</label>
-        {{ form.email_address }}
-    </div>
-    <div class="fieldWrapper">
-        {{ form.location.errors }}
-        <label for="id_location">Location</label>
-        {{ form.location }}
-    </div>
-    <input type="submit" value="Submit" />
-</form>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Powered Email</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab" rel="stylesheet">
+
+    {% load static %}
+    <link href="{% static 'signup/style.css' %}" rel="stylesheet">
+</head>
+<body>
+
+{% load bootstrap3 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript jquery=1 %}
+{% bootstrap_messages %}
+
+<div class="container">
+    <h2>Weather Powered Email</h2>
+
+    <form action="/signup/" method="post">{% csrf_token %}
+        {% bootstrap_form form %}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+</body>
+</html>

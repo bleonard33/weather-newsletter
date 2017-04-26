@@ -17,32 +17,24 @@ class Command(BaseCommand):
 
         for loc in Account.objects.distinct('location'):
 
-            loc = loc.location
+            city = loc.location.city
+            state = loc.location.state
+
+            url = self.WUNDERGROUND_URL.format(
+                key=self.WUNDERGROUND_KEY,
+                state=state,
+                city=city
+            )
 
             # Get current conditions for location
-            r = requests.get(
-                self.WUNDERGROUND_URL.format(
-                    key=self.WUNDERGROUND_KEY,
-                    api='conditions',
-                    state=loc.state,
-                    city=loc.city
-                )
-            )
+            r = requests.get(url.format(api='conditions'))
 
             curr_temp = r.json().get('current_observation').get('temp_f')
 
-            r = requests.get(
-                self.WUNDERGROUND_URL.format(
-                    key=self.WUNDERGROUND_KEY,
-                    api='almanac',
-                    state=loc.state,
-                    city=loc.city
-                )
-            )
+            # Get historical almanac information for location
+            r = requests.get(url.format(api='almanac'))
 
             avg_temp = (r.json().get('almanac').get('temp_high')
                         .get('normal').get('F'))
 
             print curr_temp, avg_temp
-
-        # print [x.location.city for x in Account.objects.distinct('location')]

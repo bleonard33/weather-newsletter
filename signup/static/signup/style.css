@@ -35,3 +35,12 @@ button.btn {
 #submit-btn:hover {
     background-color: #264653;
 }
+
+#attibution {
+    margin-top: 12em;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#wunderground-logo {
+    width: 15em;
+}

@@ -132,3 +132,5 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = os.environ['GMAIL_ACCT']
 EMAIL_HOST_PASSWORD = os.environ['GMAIL_PW']
 EMAIL_USE_TLS = True
+
+ALLOWED_HOSTS = ['ec2-54-174-64-213.compute-1.amazonaws.com', '54.174.64.213']

@@ -44,6 +44,7 @@ class Command(BaseCommand):
             # TODO: Upgrade API plan and remove entirely
             if self.wunderground_api_calls >= 9:
                 time.sleep(60)
+                self.wunderground_api_calls = 0
 
             # Get current conditions for location
             conditions = (requests.get(url.format(api='conditions')).json()

@@ -20,3 +20,7 @@ export PG_PASSWORD='password'
 3. In root of the project, run `python manage.py migrate`
 4. To start the server, in the root directory of the project run `python manage.py runserver`
 5. To send out emails, run the corresponding admin command with `python manage.py send_email`
+
+## Screenshots
+![Alt text](https://github.com/bleonard33/weather-newsletter/blob/screenshots/screenshots/homepage.png "Signup Page")
+![Alt text](https://github.com/bleonard33/weather-newsletter/blob/screenshots/screenshots/sample_email.png "Sample Email")

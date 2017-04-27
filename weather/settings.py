@@ -125,3 +125,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Email
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.environ['GMAIL_ACCT']
+EMAIL_HOST_PASSWORD = os.environ['GMAIL_PW']
+EMAIL_USE_TLS = True
+
+# EMAIL_HOST = 'email-smtp.us-east-1.amazonaws.com'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'AKIAJHDRZQH6CN5CBFBA'
+# EMAIL_HOST_PASSWORD = os.environ['AWS_EMAIL_KEY']
+# EMAIL_USE_TLS = True

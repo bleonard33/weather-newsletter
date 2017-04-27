@@ -1,0 +1,1 @@
+0 12 * * * python /Projects/weather/manage.py send_email

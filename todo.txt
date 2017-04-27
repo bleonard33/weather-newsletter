@@ -1,11 +1,11 @@
 Update requirements.txt
 unsub?
 security
-wunderground logo attribution
+wunderground logo attribution in email
 cron email send @ 12pm
 admin things
-html and plaintext version
 giphy?
+emoji?
 add in TODO improvements into codebase
 css
 
@@ -13,4 +13,4 @@ awk language in email bc wunderground current
 logging
 
 
-WEATHER EMAIL html title?
+inline images

@@ -3,12 +3,35 @@
   <head>
     <meta name="viewport" content="width=device-width" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Enjoy a discount on us.</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab" rel="stylesheet">
     <style>
+        div {
+            font-family: 'Open Sans', sans-serif;
+            margin: 1em 0;
+        }
 
+        h2#title {
+            font-family: 'Roboto Slab', sans-serif;
+            color: #247BA0;
+        }
+        div#code {
+            font-size: 16pt;
+            font-weight: 800;
+        }
     </style>
   </head>
   <body>
-    <h3>{{ current }}</h3>
+    <h2 id="title">Weather-Powered Savings</h2>
+    <div>
+        Right now in {{city}}, current conditions are: <a href="{{gif_url}}">{{current}}</a> with a temperature of {{curr_temp}}&deg; F.
+    </div>
+    <div>
+        Enjoy a discount of 20% off any item with this code:
+    </div>
+    <div id="code">{{ code }}</div>
+    <div>
+        Weather data provided by Weather Underground
+        <img id="wunderground-logo" src="cid:wunderground'">
+    </div>
   </body>
 </html>

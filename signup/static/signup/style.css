@@ -1,7 +1,7 @@
 /* TODO: Redo this in Sass w/ Grunt */
 
 #title {
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Roboto Slab', sans-serif;
     margin-top: 2.5em;
     margin-bottom: .5em;
     color: #247BA0;

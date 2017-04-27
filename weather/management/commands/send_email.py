@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand
 from django.template.loader import get_template
 from django.core.mail import EmailMultiAlternatives
+from email.mime.image import MIMEImage
 from signup.models import Account
 import requests
 import time
@@ -15,6 +16,9 @@ class Command(BaseCommand):
 
     # Get API key from system variable
     WUNDERGROUND_KEY = os.environ['WUNDERGROUND_KEY']
+
+    GIPHY_API = ('http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&'
+                    'tag={tag}&rating=y')
 
     FROM_EMAIL = 'bmleonard33+weather@gmail.com'
 
@@ -73,6 +77,9 @@ class Command(BaseCommand):
                 subj = 'Enjoy a discount on us.'
                 code = 'SAVE20'
 
+            gif_url = (requests.get(self.GIPHY_API.format(tag=current)).json()
+                .get('data').get('url'))
+
             # Use city ID to find all emails associated with current city
             city_emails = [x.email_address for x
                     in Account.objects.filter(location_id=loc.location_id)]
@@ -81,14 +88,26 @@ class Command(BaseCommand):
                         'city': city,
                         'curr_temp': curr_temp,
                         'current': current,
-                        'code': code
+                        'code': code,
+                        'gif_url': gif_url
             }
 
             # Render plaintext and html emails with context
             plaintext = get_template('email.txt').render(context)
             html = get_template('email.html').render(context)
 
-            # Send the message!
+            # Build the message
             message = EmailMultiAlternatives(subj, plaintext, self.FROM_EMAIL, city_emails)
             message.attach_alternative(html, "text/html")
+            message.mixed_subtype = 'related'
+
+            # Add image to HTML email
+            png = open('weather/static/weather/wundergroundLogo_4c_horz.png', 'rb')
+            image = MIMEImage(png.read())
+            png.close()
+            image.add_header("Content-Disposition", "inline", filename="wundergroundLogo_4c_horz.png")
+            image.add_header('Content-ID', '<wunderground>')
+            message.attach(image)
+
+            # Send the email
             message.send()

@@ -105,3 +105,5 @@ class Command(BaseCommand):
             message = EmailMultiAlternatives(subj, plaintext, self.FROM_EMAIL, city_emails)
             message.attach_alternative(html, "text/html")
             message.send()
+
+            print len(city_emails), 'emails sent!'

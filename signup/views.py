@@ -27,7 +27,7 @@ def index(request):
                 send_mail(
                     'Welcome to Weather-Powered Discounts!',
                     ('Thanks for signing up for our newsletter! '
-                        'We send it out each day at noon Eastern time, '
+                        'We\'ll send it out to you each afternoon, '
                         'so be on the look out for great deals!'),
                     'bmleonard33@gmail.com',
                     [form.cleaned_data['email_address']],

@@ -96,18 +96,7 @@ class Command(BaseCommand):
             plaintext = get_template('email.txt').render(context)
             html = get_template('email.html').render(context)
 
-            # Build the message
+            # Build the message and send
             message = EmailMultiAlternatives(subj, plaintext, self.FROM_EMAIL, city_emails)
             message.attach_alternative(html, "text/html")
-            message.mixed_subtype = 'related'
-
-            # Add image to HTML email
-            png = open('weather/static/weather/wundergroundLogo_4c_horz.png', 'rb')
-            image = MIMEImage(png.read())
-            png.close()
-            image.add_header("Content-Disposition", "inline", filename="wundergroundLogo_4c_horz.png")
-            image.add_header('Content-ID', '<wunderground>')
-            message.attach(image)
-
-            # Send the email
             message.send()

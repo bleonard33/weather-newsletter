@@ -1,16 +1,24 @@
-Update requirements.txt
-unsub?
-security
-wunderground logo attribution in email
-cron email send @ 12pm
-admin things
-giphy?
-emoji?
-add in TODO improvements into codebase
-css
+# TODO:
+- Add more TODOs into codebase
+- Logging
+- Remove .pyc?
+- Crontab
+- Make sure requirements.txt is all set
 
-awk language in email bc wunderground current
-logging
+# Maybe:
+- Admin
+- Unsub
+- Welcome email
+- Security things?
+- Awkward language in wundergound current insert
+- See if we can get the wunderground logo inline
 
+message.mixed_subtype = 'related'
 
-inline images
+# Add image to HTML email
+png = open('weather/static/weather/wundergroundLogo_4c_horz.png', 'rb')
+image = MIMEImage(png.read())
+png.close()
+image.add_header("Content-Disposition", "inline", filename="wundergroundLogo_4c_horz.png")
+image.add_header('Content-ID', '<wunderground>')
+message.attach(image)

@@ -1,7 +1,7 @@
 # weather-newsletter
 
-## Stack
-This is a project written primarily in Django with a PostgreSQL database and a Boostrap framework. It consists of a single-page form where a user can enter their email address and choose a city from a drop-down list to sign up for daily weather alerts using the Weather Underground API.
+## Overview
+This is a project written primarily in Django with a PostgreSQL database and a Boostrap framework. It consists of a single-page form where a user can enter their email address and choose a city from a drop-down list to sign up for daily weather alerts using the Weather Underground API (as well as the Giphy API). Users are also sent a welcome email upon signing up for the newsletter.
 
 ## Setup
 1. Clone the repo to your local machine. Install the necessary requirements (including PostgreSQL).

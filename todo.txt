@@ -8,3 +8,6 @@ html and plaintext version
 giphy?
 add in TODO improvements into codebase
 css
+
+awk language in email bc wunderground current
+logging

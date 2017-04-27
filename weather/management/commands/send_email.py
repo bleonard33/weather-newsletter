@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand
-from django.core.mail import send_mail
+from django.template.loader import get_template
+from django.core.mail import EmailMultiAlternatives
 from signup.models import Account
 import requests
 import time
@@ -15,12 +16,7 @@ class Command(BaseCommand):
     # Get API key from system variable
     WUNDERGROUND_KEY = os.environ['WUNDERGROUND_KEY']
 
-    # Base email message string
-    # TODO: the language from wunderground is a bit awkward here sometimes
-    MSG_STRING = (u'Right now in {city}, current conditions are: {current} '
-                    u'with a temperature of {curr_temp}\u00B0F.\n\n'
-                    u'Enjoy a discount of 20%% off any item with code {code}! \n\n'
-                    u'Weather data provided by Weather Underground.')
+    FROM_EMAIL = 'bmleonard33+weather@gmail.com'
 
     wunderground_api_calls = 0
 
@@ -58,6 +54,8 @@ class Command(BaseCommand):
             avg_temp = float(requests.get(url.format(api='almanac')).json()
                 .get('almanac').get('temp_high').get('normal').get('F'))
 
+            print city, curr_temp, avg_temp, precip, current
+
             self.wunderground_api_calls += 2
 
             # Determine if weather is good or bad
@@ -75,13 +73,20 @@ class Command(BaseCommand):
                 subj = 'Enjoy a discount on us.'
                 code = 'SAVE20'
 
-            # Format message string with real values
-            message = self.MSG_STRING.format(city=city, current=current,
-                curr_temp=curr_temp, code=code)
-
             # Use city ID to find all emails associated with current city
             city_emails = [x.email_address for x
                     in Account.objects.filter(location_id=loc.location_id)]
 
-            send_mail(subj, message, 'bmleonard33+weather@gmail.com',
-                city_emails, fail_silently=False)
+            context = {
+                        'city': city,
+                        'curr_temp': curr_temp,
+                        'current': current,
+                        'code': code
+            }
+
+            # Render plaintext email with context
+            plaintext = get_template('email.txt').render(context)
+
+            message = EmailMultiAlternatives(subj, plaintext, self.FROM_EMAIL, city_emails)
+
+            message.send()

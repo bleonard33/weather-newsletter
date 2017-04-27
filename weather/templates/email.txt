@@ -1,0 +1,6 @@
+Right now in {{city}}, current conditions are: {{current}} with a temperature of {{curr_temp}}˚ F.
+
+Enjoy a discount of 20% off any item with code {{code}}!
+
+
+Weather data provided by Weather Underground.

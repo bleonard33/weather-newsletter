@@ -84,9 +84,11 @@ class Command(BaseCommand):
                         'code': code
             }
 
-            # Render plaintext email with context
+            # Render plaintext and html emails with context
             plaintext = get_template('email.txt').render(context)
+            html = get_template('email.html').render(context)
 
+            # Send the message!
             message = EmailMultiAlternatives(subj, plaintext, self.FROM_EMAIL, city_emails)
-
+            message.attach_alternative(html, "text/html")
             message.send()

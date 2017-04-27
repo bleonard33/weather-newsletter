@@ -1,0 +1,37 @@
+/* TODO: Redo this in Sass w/ Grunt */
+
+#title {
+    font-family: 'Roboto Slab', serif;
+    margin-top: 2.5em;
+    margin-bottom: .5em;
+    color: #247BA0;
+}
+
+.fa-sun-o {
+    color: #FFF07C;
+}
+
+.fa-tint {
+    color: #247BA0;
+}
+
+.fa-snowflake-o {
+    color: #BFD7EA;
+}
+
+.fa-cloud {
+    color: #668586;
+}
+
+form,
+button.btn {
+    font-family: 'Open Sans', sans-serif;
+}
+
+#submit-btn {
+    background-color: #247BA0;
+}
+
+#submit-btn:hover {
+    background-color: #264653;
+}

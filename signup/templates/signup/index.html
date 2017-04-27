@@ -1,27 +1,39 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Weather Powered Email</title>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab" rel="stylesheet">
-
-    {% load static %}
-    <link href="{% static 'signup/style.css' %}" rel="stylesheet">
-</head>
-<body>
-
 {% load bootstrap3 %}
 
 {% bootstrap_css %}
 {% bootstrap_javascript jquery=1 %}
 {% bootstrap_messages %}
 
-<div class="container">
-    <h2>Weather Powered Email</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Powered Email</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab" rel="stylesheet">
+    <script src="https://use.fontawesome.com/bfe509bb32.js"></script>
 
-    <form action="/signup/" method="post">{% csrf_token %}
-        {% bootstrap_form form %}
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    {% load static %}
+    <link href="{% static 'signup/style.css' %}" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+        <h2 id="title" class="text-center">
+            <i class="fa fa-sun-o"></i>
+            <i class="fa fa-tint"></i>
+            <i class="fa fa-snowflake-o"></i>
+            <i class="fa fa-cloud"></i>
+            <br />
+            Weather Powered Email
+        </h2>
+
+        <form action="/signup/" method="post">{% csrf_token %}
+            {% bootstrap_form form %}
+            <div class="col-xs-12 text-center">
+                <button type="submit" id="submit-btn" class="btn btn-lg btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
 </div>
 
 </body>

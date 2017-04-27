@@ -5,3 +5,10 @@ wunderground attribution
 cron email send @ 12pm
 admin things
 10 requests/min wunderground throttling
+
+SUNNY OR RAINY ALSO CHANGES HEADLINE
+set up EC2/SES
+html and plaintext
+generate coupon code
+giphy?
+add in TODO improvements into codebase

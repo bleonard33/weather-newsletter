@@ -42,6 +42,7 @@ class Command(BaseCommand):
 
             # Throttle wunderground API calls to 10/min for free plan
             # TODO: Upgrade API plan and remove entirely
+            print self.wunderground_api_calls
             if self.wunderground_api_calls >= 9:
                 time.sleep(60)
                 self.wunderground_api_calls = 0
@@ -77,8 +78,12 @@ class Command(BaseCommand):
                 subj = 'Enjoy a discount on us.'
                 code = 'SAVE20'
 
-            gif_url = (requests.get(self.GIPHY_API.format(tag=current)).json()
-                .get('data').get('url'))
+            try:
+                gif_url = (requests.get(self.GIPHY_API.format(tag=current))
+                    .json().get('data').get('url'))
+            # If giphy fails, generic hard-coded weather gif
+            except AttributeError:
+                gif_url = 'https://giphy.com/gifs/batman-weather-za5xikuRr0OzK'
 
             # Use city ID to find all emails associated with current city
             city_emails = [x.email_address for x

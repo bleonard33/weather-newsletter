@@ -4,3 +4,4 @@ Future TODOs:
 - Figure out a better wording in emails with the inserted current weather conditions (can sometimes be awkward wording)
 - Move welcome email from plaintext to HTML
 - Unsubscribe page
+- Improve error handling for Giphy API failure

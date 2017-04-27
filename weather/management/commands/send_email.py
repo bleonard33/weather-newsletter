@@ -1,7 +1,6 @@
 from django.core.management.base import BaseCommand
 from django.template.loader import get_template
 from django.core.mail import EmailMultiAlternatives
-from email.mime.image import MIMEImage
 from signup.models import Account
 import requests
 import time
@@ -43,7 +42,7 @@ class Command(BaseCommand):
 
             # Throttle wunderground API calls to 10/min for free plan
             # TODO: Upgrade API plan and remove entirely
-            if self.wunderground_api_calls >= 10:
+            if self.wunderground_api_calls >= 9:
                 time.sleep(60)
 
             # Get current conditions for location

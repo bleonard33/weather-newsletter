@@ -27,6 +27,10 @@
             Weather Powered Email
         </h2>
 
+        <div id="copy" class="text-center">
+            Sign up to receive our daily email newsletter to be in the loop on exclusive weather-inspired discounts (and maybe even a fun gif)!
+        </div>
+
         <form action="/signup/" method="post">{% csrf_token %}
             {% bootstrap_form form %}
             <div class="col-xs-12 text-center">

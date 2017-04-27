@@ -22,6 +22,7 @@ def index(request):
             if not query.exists():
                 form.save()
                 messages.success(request, 'Success! Thanks for signing up.')
+
             # If record exists, send failure message
             else:
                 messages.error(request, 'Email address already registered.')

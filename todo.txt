@@ -1,9 +1,11 @@
 # TODO:
+- Copy on the signup page. Something about the gif
 - Add more TODOs into codebase
 - Logging
 - Remove .pyc?
 - Crontab
 - Make sure requirements.txt is all set
+- Readme?
 
 # Maybe:
 - Admin

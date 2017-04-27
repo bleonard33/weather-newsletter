@@ -23,6 +23,11 @@
     color: #668586;
 }
 
+#copy {
+    margin-bottom: 2em;
+    font-family: 'Open Sans', sans-serif;
+}
+
 form,
 button.btn {
     font-family: 'Open Sans', sans-serif;
@@ -42,5 +47,5 @@ button.btn {
 }
 
 #wunderground-logo {
-    width: 15em;
+    width: 12em;
 }

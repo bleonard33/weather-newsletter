@@ -1,14 +1,10 @@
 Update requirements.txt
 unsub?
 security
-wunderground attribution
+wunderground logo attribution
 cron email send @ 12pm
 admin things
-10 requests/min wunderground throttling
-
-SUNNY OR RAINY ALSO CHANGES HEADLINE
-set up EC2/SES
-html and plaintext
-generate coupon code
+html and plaintext version
 giphy?
 add in TODO improvements into codebase
+css

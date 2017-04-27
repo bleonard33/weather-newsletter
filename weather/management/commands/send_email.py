@@ -1,7 +1,8 @@
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from django.core.mail import send_mail
 from signup.models import Account
 import requests
+import time
 import os
 
 
@@ -18,7 +19,10 @@ class Command(BaseCommand):
     # TODO: the language from wunderground is a bit awkward here sometimes
     MSG_STRING = (u'Right now in {city}, current conditions are: {current} '
                     u'with a temperature of {curr_temp}\u00B0F.\n\n'
-                    u'Enjoy a discount of 20%% off any item with code {code}!')
+                    u'Enjoy a discount of 20%% off any item with code {code}! \n\n'
+                    u'Weather data provided by Weather Underground.')
+
+    wunderground_api_calls = 0
 
     def handle(self, *args, **options):
 
@@ -37,6 +41,11 @@ class Command(BaseCommand):
                 city=city
             )
 
+            # Throttle wunderground API calls to 10/min for free plan
+            # TODO: Upgrade API plan and remove entirely
+            if self.wunderground_api_calls >= 10:
+                time.sleep(60)
+
             # Get current conditions for location
             conditions = (requests.get(url.format(api='conditions')).json()
                 .get('current_observation'))
@@ -49,10 +58,16 @@ class Command(BaseCommand):
             avg_temp = float(requests.get(url.format(api='almanac')).json()
                 .get('almanac').get('temp_high').get('normal').get('F'))
 
+            self.wunderground_api_calls += 2
+
             # Determine if weather is good or bad
+            # TODO: Dynamically generate coupon code and store in DB
             if curr_temp < avg_temp - 5 or float(precip) > 0:
                 subj = 'Not so nice out? That\'s okay, enjoy a discount on us.'
-                code = 'SUNSHINE20'
+                if curr_temp < avg_temp - 5:
+                    code = 'COLD20'
+                else:
+                    code = 'SOGGY20'
             elif curr_temp > avg_temp + 5 or 'sun' in current:
                 subj = 'It\'s nice out! Enjoy a discount on us.'
                 code = 'BEAUTIFULDAY20'

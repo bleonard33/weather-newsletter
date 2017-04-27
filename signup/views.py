@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+from django.core.mail import send_mail
 from django.shortcuts import render
 from django.contrib import messages
 from .models import Account
@@ -22,6 +23,16 @@ def index(request):
             if not query.exists():
                 form.save()
                 messages.success(request, 'Success! Thanks for signing up.')
+
+                send_mail(
+                    'Welcome to Weather-Powered Discounts!',
+                    ('Thanks for signing up for our newsletter! '
+                        'We send it out each day at noon Eastern time, '
+                        'so be on the look out for great deals!'),
+                    'bmleonard33@gmail.com',
+                    [form.cleaned_data['email_address']],
+                    fail_silently=False,
+                )
 
             # If record exists, send failure message
             else:

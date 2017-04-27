@@ -1,25 +1,6 @@
-# TODO:
-- Add more TODOs into codebase
-- Logging
-- Remove .pyc?
-- Crontab
-- Make sure requirements.txt is all set
-- Readme?
-
-# Maybe:
-- Admin
-- Unsub
-- Welcome email
-- Security things?
-- Awkward language in wundergound current insert
-- See if we can get the wunderground logo inline
-
-message.mixed_subtype = 'related'
-
-# Add image to HTML email
-png = open('weather/static/weather/wundergroundLogo_4c_horz.png', 'rb')
-image = MIMEImage(png.read())
-png.close()
-image.add_header("Content-Disposition", "inline", filename="wundergroundLogo_4c_horz.png")
-image.add_header('Content-ID', '<wunderground>')
-message.attach(image)
+Future TODOs:
+- Improved logging
+- Add wunderground logo to emails
+- Figure out a better wording in emails with the inserted current weather conditions (can sometimes be awkward wording)
+- Move welcome email from plaintext to HTML
+- Unsubscribe page
